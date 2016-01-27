@@ -1,0 +1,26 @@
+<?php
+/**
+ * Mageplace Freshdesk extension
+ *
+ * @category    Mageplace_Freshdesk
+ * @package     Mageplace_Freshdesk
+ * @copyright   Copyright (c) 2014 Mageplace. (http://www.mageplace.com)
+ * @license     http://www.mageplace.com/disclaimer.html
+ */
+?>
+
+<?php
+/**
+ * @see  Mageplace_Freshdesk_Block_Adminhtml_Ticket_Edit_Form_Fields
+ *
+ * @var Mageplace_Freshdesk_Block_Adminhtml_Ticket_Edit_Form_Fields $this
+ * @var Mageplace_Freshdesk_Model_Field                             $field
+ */
+
+$_fields = $this->getFields();
+?>
+<table cellspacing="0" class="form-list">
+    <?php foreach ($_fields as $field) : ?>
+        <?php echo $this->getFieldHtml($field); ?>
+    <?php endforeach; ?>
+</table>

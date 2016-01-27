@@ -1,0 +1,20 @@
+<?php
+/**
+ * Mageplace Freshdesk extension
+ *
+ * @category    Mageplace_Freshdesk
+ * @package     Mageplace_Freshdesk
+ * @copyright   Copyright (c) 2014 Mageplace. (http://www.mageplace.com)
+ * @license     http://www.mageplace.com/disclaimer.html
+ */
+
+/**
+ * @see  Mageplace_Freshdesk_Block_Field_Text
+ *
+ * @var Mageplace_Freshdesk_Block_Field_Text $this
+ */
+
+?>
+<input type="text" id="<?php echo $this->getFieldId(); ?>" name="<?php echo $this->getFieldName(); ?>"
+       class="<?php echo $this->getFieldClass(); ?>"
+       value="<?php echo $this->getOrderId(); ?>" <?php if ($this->getOrderId()) : ?>readonly="true"<?php endif; ?>/>

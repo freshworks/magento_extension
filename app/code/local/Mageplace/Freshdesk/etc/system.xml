@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Mageplace Freshdesk extension
+ *
+ * @category    Mageplace_Freshdesk
+ * @package     Mageplace_Freshdesk
+ * @copyright   Copyright (c) 2014 Mageplace. (http://www.mageplace.com)
+ * @license     http://www.mageplace.com/disclaimer.html
+ */
+-->
+<config>
+	<tabs>
+		<freshdesk translate="label" module="freshdesk">
+			<label>Freshdesk</label>
+			<sort_order>500</sort_order>
+		</freshdesk>
+	</tabs>
+	<sections>
+		<freshdesk translate="label" module="freshdesk">
+			<label>Freshdesk</label>
+			<tab>freshdesk</tab>
+			<class>freshdesk-section</class>
+			<header_css>freshdesk-header</header_css>
+			<sort_order>100</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<account translate="label">
+					<label>Account</label>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<comment>Account details required to integrate Freshdesk with Magento</comment>
+					<fields>
+						<domain translate="label">
+							<label>Freshdesk domain:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</domain>
+						<email translate="label">
+							<label>Admin email:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Agent should have admin permissions in Freshdesk to access all ticket information</comment>
+						</email>
+						<!--password translate="label">
+							<label>Password:</label>
+							<frontend_type>password</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</password-->
+						<api_key translate="label">
+							<label>Admin API key:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>To get your token, inside Freshdesk portal, click profile settings and copy "Your API key"</comment>
+						</api_key>
+						<account_bottom_comment>
+							<frontend_model>freshdesk/adminhtml_config_comment</frontend_model>
+							<comment>Global view of all Freshdesk tickets will be shown</comment>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<sort_order>50</sort_order>
+						</account_bottom_comment>
+					</fields>
+				</account>
+
+				<!--sso>
+					<label>Single Sign On</label>
+					<sort_order>20</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<comment>Allow users and agents to login your Freshdesk portal through Magento authentication</comment>
+					<fields>
+						<enable translate="label">
+							<label>Enable Single Sign On:</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Enable SSO in Freshdesk and obtain your Shared Secret</comment>
+						</enable>
+						<secret translate="label">
+							<label>Shared Secret:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>To get your shared secret, inside Freshdesk portal, go to Admin->Security</comment>
+						</secret>
+						<login_url translate="label">
+							<label>Login URL:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Url should be accessible to both agents and customers</comment>
+						</login_url>
+						<logout_url translate="label">
+							<label>Logout URL:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Url should be accessible to both agents and customers</comment>
+						</logout_url>
+						<sso_bottom_comment>
+							<frontend_model>freshdesk/adminhtml_config_comment</frontend_model>
+							<comment>Paste both the URLs into your Freshdesk SSO for the process to be complete</comment>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<sort_order>40</sort_order>
+						</sso_bottom_comment>
+					</fields>
+				</sso-->
+
+				<orders>
+					<label>Order Id Linking</label>
+					<sort_order>40</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<order_id translate="label">
+							<label>Magento Order id linked to:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Obtain your custom field name (Agent Label) in Freshdesk that you want to correspond with your Magento order id and paste it here</comment>
+						</order_id>
+						<order_id_comment>
+							<frontend_model>freshdesk/adminhtml_config_comment</frontend_model>
+							<comment>If you haven't created an Order field yet, go to Freshdesk &lt;a id="fd_order_id_ticket_fields_link" href="" target="_blank"&gt;Ticket Fields&lt;/a&gt; to create one</comment>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<sort_order>40</sort_order>
+						</order_id_comment>
+					</fields>
+				</orders>
+
+				<channels>
+					<label>Channels</label>
+					<sort_order>50</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable_contact_us translate="label">
+							<label>Contact Us form:</label>
+							<!--label>Create tickets from Contact Us form:</label-->
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Enabling this will automatically create a ticket when a form is submitted</comment>
+						</enable_contact_us>
+						<enable_feedback_widget translate="label">
+							<label>Feedback Widget:</label>
+							<!--label>Have a feedback widget on your website:</label-->
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enable_feedback_widget>
+						<feedback_widget translate="label">
+							<frontend_type>textarea</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Code will be pasted to all your store pages. To customize your feedback widget, go to Freshdesk &lt;a id="fd_channels_feedback_widget_link" href="" target="_blank"&gt;Feedback Widget&lt;/a&gt; and paste the final code above</comment>
+						</feedback_widget>
+						<!--feedback_widget_label translate="label">
+							<label>Feedback widget label:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>25</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</feedback_widget_label>
+						<feedback_widget_bgcolor translate="label">
+							<label>Feedback widget background color:</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Example: #006063 or 006063</comment>
+						</feedback_widget_bgcolor>
+						<feedback_widget_position translate="label">
+							<label>Feedback widget position:</label>
+							<frontend_type>select</frontend_type>
+							<source_model>freshdesk/source_widgetposition</source_model>
+							<sort_order>35</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</feedback_widget_position>
+						<feedback_widget_code translate="label">
+							<frontend_type>textarea</frontend_type>
+							<sort_order>45</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Paste this code on each of the pages where you want it to appear. To customize your feedback widget, go to Freshdesk widget</comment>
+						</feedback_widget_code-->
+						<enable_support_link translate="label">
+							<label>Support link in Magento footer:</label>
+							<!--label>Show Support Link in Magento footer:</label-->
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>This link will take users to your freshdesk support portal</comment>
+						</enable_support_link>
+					</fields>
+				</channels>
+
+				<customer_view>
+					<label>Customer View</label>
+					<sort_order>60</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enable_customer_view translate="label">
+							<!--label>Allow your customers to view their tickets:</label-->
+							<label>Ticket View for Customers:</label>
+							<frontend_type>select</frontend_type>
+							<source_model>freshdesk/source_ticketview</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<!--comment>If this is not selected, customers will only be able to create tickets through the Contact Us form of Feedback widget. To view their existing tickets, they will have to go to your freshdesk portal</comment-->
+						</enable_customer_view>
+
+						<!--enable_ticket_tab translate="label">
+							<label>My Tickets tab will be shown inside customer's My Account. Tickets can be viewed, replied and closed here:</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enable_ticket_tab-->
+
+						<enable_recent_ticket translate="label">
+							<label>Show recent tickets in Account Dashboard:</label>
+							<!--label>Show customer's most recent tickets and their status in Account Dashboard:</label-->
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enable_recent_ticket>
+					</fields>
+				</customer_view>
+			</groups>
+		</freshdesk>
+	</sections>
+</config>

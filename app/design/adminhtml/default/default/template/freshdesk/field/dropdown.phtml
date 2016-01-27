@@ -1,0 +1,22 @@
+<?php
+/**
+ * Mageplace Freshdesk extension
+ *
+ * @category    Mageplace_Freshdesk
+ * @package     Mageplace_Freshdesk
+ * @copyright   Copyright (c) 2014 Mageplace. (http://www.mageplace.com)
+ * @license     http://www.mageplace.com/disclaimer.html
+ */
+
+/**
+ * @see Mageplace_Freshdesk_Block_Field_Dropdown
+ *
+ * @var Mageplace_Freshdesk_Block_Field_Dropdown $this
+ */
+?>
+<select id="<?php echo $this->getFieldId(); ?>" name="<?php echo $this->getFieldName(); ?>"
+        class="<?php echo $this->getFieldClass(); ?>">
+    <?php foreach ($this->getOptions() as $option) : ?>
+        <option value="<?php echo $option['value']; ?>"><?php echo $option['label']; ?></option>
+    <?php endforeach; ?>
+</select>

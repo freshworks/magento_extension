@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplace Freshdesk extension
+ *
+ * @category    Mageplace_Freshdesk
+ * @package     Mageplace_Freshdesk
+ * @copyright   Copyright (c) 2013 Mageplace. (http://www.mageplace.com)
+ * @license     http://www.mageplace.com/disclaimer.html
+ */
+-->
+<config>
+    <modules>
+        <Mageplace_Freshdesk>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends />
+        </Mageplace_Freshdesk>
+    </modules>
+</config>

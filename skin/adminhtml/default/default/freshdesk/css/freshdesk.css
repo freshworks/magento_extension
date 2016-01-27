@@ -1,0 +1,51 @@
+.head-ticket-page {
+	background-image: url(../images/admin-ticket-icon.gif);
+}
+
+#create-ticket-fieldset table tr td.label {
+	width: 0px;
+	padding: 0px !important;
+}
+
+#ticket_fields_area .label {
+	width: 200px !important;
+	padding: 5px 0px 5px 5px !important;
+}
+
+ul.tabs a.freshdesk-section,
+ul.tabs a.freshdesk-section:hover {
+	border-bottom: 1px solid #BEBEBE;
+	padding: 0 0 0 1.3em;
+	text-indent: -9999px;
+}
+
+ul.tabs a.freshdesk-section.active,
+ul.tabs a.freshdesk-section.active:hover {
+	background: none repeat scroll 0 0 white;
+}
+
+ul.tabs a.freshdesk-section span,
+ul.tabs a.freshdesk-section:hover span {
+	background: url(../images/fd-logo-tab.png) no-repeat 0 3px;
+	width: 120px;
+	height: 25px;
+	padding: 0;
+	overflow: hidden;
+}
+
+h3.freshdesk-header {
+	background: url(../images/fd-logo-header.png) no-repeat scroll 0 0 transparent;
+	width: 200px;
+	height: 50px;
+	padding: 0;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+
+.grid-subject-column {
+	width: 30%;
+}
+
+.grid-agent-column {
+	width: 20%;
+}

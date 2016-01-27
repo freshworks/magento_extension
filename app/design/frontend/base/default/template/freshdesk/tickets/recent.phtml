@@ -1,0 +1,132 @@
+<?php
+/**
+ * Mageplace Freshdesk extension
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Mageplace. (http://www.mageplace.com)
+ * @license     http://www.mageplace.com/disclaimer.html
+ */
+
+/**
+ * @see Mageplace_Freshdesk_Block_Customer_Ticket_Recent
+ * @var Mageplace_Freshdesk_Block_Customer_Ticket_Recent $this
+ */
+?>
+<div class="box-account box-fd-recent-tickets">
+    <?php $_tickets = $this->getTickets(); ?>
+    <div class="box-head">
+        <h2><?php echo $this->__('Recent Tickets') ?></h2>
+        <?php if ($this->canAction()): ?>
+            <div class="actions">
+                <span class="separator">|</span>
+                <a href="<?php echo $this->getCreateUrl(); ?>"><?php echo $this->__('Create a Ticket') ?></a>
+            </div>
+
+            <?php if (sizeof($_tickets->getItems()) > 0): ?>
+                <a href="<?php echo $this->getViewAllUrl(); ?>"><?php echo $this->__('View All') ?></a>
+            <?php endif; ?>
+        <?php endif; ?>
+    </div>
+    <?php if (sizeof($_tickets->getItems()) > 0): ?>
+        <table class="data-table" id="my-tickets-table">
+            <?php if ($this->isSubjectColumnVisible()) : ?>
+                <col/>
+            <?php endif; ?>
+            <col width="1"/>
+            <col width="1"/>
+            <?php if ($this->isAgentColumnVisible()) : ?>
+                <col width="1"/>
+            <?php endif; ?>
+            <?php if ($this->isStatusColumnVisible()) : ?>
+                <col width="1"/>
+            <?php endif; ?>
+            <?php if ($this->isOrderColumnVisible()) : ?>
+                <col width="1"/>
+            <?php endif; ?>
+            <?php if ($this->isPriorityColumnVisible()) : ?>
+                <col width="1"/>
+            <?php endif; ?>
+            <?php if ($this->canAction()): ?>
+                <col width="1"/>
+            <?php endif; ?>
+            <thead>
+            <tr>
+                <?php if ($this->isSubjectColumnVisible()) : ?>
+                    <th><?php echo $this->__('Subject') ?></th>
+                <?php endif; ?>
+                <th><?php echo $this->__('Ticket #') ?></th>
+                <th><?php echo $this->__('Date Created') ?></th>
+                <?php if ($this->isAgentColumnVisible()) : ?>
+                    <th><?php echo $this->__('Agent') ?></th>
+                <?php endif; ?>
+                <?php if ($this->isStatusColumnVisible()) : ?>
+                    <th><?php echo $this->__('Status') ?></th>
+                <?php endif; ?>
+                <?php if ($this->isOrderColumnVisible()) : ?>
+                    <th><?php echo $this->__('Order #') ?></th>
+                <?php endif; ?>
+                <?php if ($this->isPriorityColumnVisible()) : ?>
+                    <th><?php echo $this->__('Priority') ?></th>
+                <?php endif; ?>
+                <?php if ($this->canAction()): ?>
+                    <th>&nbsp;</th>
+                <?php endif; ?>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($_tickets as $_ticket): ?>
+                <tr>
+                    <?php if ($this->isSubjectColumnVisible()) : ?>
+                        <td><?php echo $_ticket->getSubject() ?></td>
+                    <?php endif; ?>
+                    <td class="right-cell-content"><?php echo $_ticket->getDisplayId() ?></td>
+                    <td class="right-cell-content"><span
+                            class="nobr"><?php echo $this->formatDate($_ticket->getCreatedAt()) ?></span></td>
+                    <?php if ($this->isAgentColumnVisible()) : ?>
+                        <td><?php echo $_ticket->getResponderName() ?></td>
+                    <?php endif; ?>
+                    <?php if ($this->isStatusColumnVisible()) : ?>
+                        <td><em><?php echo $_ticket->getStatusName() ?></em></td>
+                    <?php endif; ?>
+                    <?php if ($this->isOrderColumnVisible()) : ?>
+                        <td>
+                            <?php if ($orderId = $_ticket->getOrderId()) : ?>
+                            <a href="<?php echo $this->getOrderUrl($orderId); ?>">
+                                <?php endif; ?>
+                                <?php echo $_ticket->getOrderIncrementId() ? $_ticket->getOrderIncrementId() : '&nbsp;' ?>
+                                <?php if ($orderId) : ?>
+                            </a>
+                        <?php endif; ?>
+                        </td>
+                    <?php endif; ?>
+                    <?php if ($this->isPriorityColumnVisible()) : ?>
+                        <td><em><?php echo $_ticket->getPriorityName() ?></em></td>
+                    <?php endif; ?>
+                    <?php if ($this->canAction()): ?>
+                        <td class="a-center">
+                        <span class="nobr">
+                        <a href="<?php echo $this->getViewUrl($_ticket) ?>"><?php echo $this->__('View') ?></a>
+                            <?php if ($this->canClose($_ticket)): ?>
+                                <span class="separator">|</span>
+                                <a href="<?php echo $this->getCloseUrl($_ticket) ?>"
+                                   onclick="return confirm('<?php echo $this->__('Are you sure you want to close ticket?'); ?>');"
+                                   class="link-reorder"><?php echo $this->__('Close') ?></a>
+                            <?php endif; ?>
+                        </span>
+                        </td>
+                    <?php endif; ?>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <script type="text/javascript">
+            if (!Object.isUndefined(fdAccountTicketRecent)) {
+                fdAccountTicketRecent.add('.box-recent', '.box-fd-recent-tickets', '.my-account .welcome-msg').process();
+            }
+            decorateTable('my-tickets-table');
+        </script>
+    <?php else: ?>
+        <p><?php echo $this->__('There are no tickets to display.'); ?></p>
+    <?php endif; ?>
+</div>

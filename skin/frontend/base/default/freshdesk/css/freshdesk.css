@@ -1,0 +1,122 @@
+#my-tickets-table td {
+    vertical-align: middle;
+}
+
+.box-fd-recent-tickets .box-head h2 {
+    background-image: url(../images/ticket-icon.gif);
+}
+
+.box-fd-recent-tickets .box-head .actions {
+    float: left;
+    margin-left: 5px;
+    line-height: 1.35;
+}
+
+.box-fd-recent-tickets .box-head .actions .separator {
+    color: #cccccc;
+}
+
+.box-fd-recent-tickets .right-cell-content {
+    text-align: right;
+}
+
+.ticket-info {
+    background: #DEE5E8;
+    border: 1px solid #D0CBC1;
+    padding: 4px 8px;
+    margin: 0 0 8px;
+}
+
+.ticket-info dt, .ticket-info dd, .ticket-info ul, .ticket-info li {
+    display: inline;
+}
+
+.ticket-info .current {
+    font-weight: bold;
+}
+
+.ticket-info li {
+    margin: 0 3px;
+}
+
+.ticket-info-box {
+    background: #fff url(../images/bkg_block-title.gif) 0 0 repeat-x;
+    border: 1px solid #D0CBC1;
+    padding: 12px 15px;
+    margin: 0 0 15px;
+}
+
+.notes-box {
+    border: 0px none;
+}
+
+.note-row {
+    float: left;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.note-row .col-1 {
+    width: 17%;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.note-row .col-1 .box-date {
+    font-size: 10px;
+    color: #AAAAAA;
+}
+
+.note-row .col-2 {
+    width: 78.5%;
+    height: 100%;
+    border: 1px solid #DDDCCC;
+    padding: 15px 10px;
+}
+
+.note-row .col-2 .box-note {
+    min-height: 20px;
+}
+
+.note-row .col-2.last {
+    background-color: #F7F7F7;
+}
+
+.freshdesk-ticket .reply {
+    border: 1px solid #CCCCCC;
+    width: 85%;
+    padding: 8px;
+}
+
+.freshdesk-ticket .not-active {
+    color: #CCCCCC;
+    font-weight: bold;
+}
+
+.freshdesk-ticket-create .page-title {
+    margin-bottom: 15px;
+}
+
+.freshdesk-ticket-create .actions {
+    text-align: right;
+}
+
+.freshdesk-ticket-create .ticket-create-box {
+    border: 1px solid #bbafa0;
+    background: #F2F2F2;
+    padding: 22px 25px 12px 33px;
+    margin: 15px 0;
+}
+
+.freshdesk-ticket-create .form-list li.wide select {
+    width: 260px;
+}
+
+.fd-tickets-list button.button, .freshdesk-ticket button.button, .freshdesk-ticket-create button.button {
+    margin-left: 7px;
+}
+
+.link-create-order {
+    font-weight: bold;
+    color: #dc6809;
+}

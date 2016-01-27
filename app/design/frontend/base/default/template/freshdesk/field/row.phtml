@@ -1,0 +1,30 @@
+<?php
+/**
+ * Mageplace Freshdesk extension
+ *
+ * @category    Mageplace_Freshdesk
+ * @package     Mageplace_Freshdesk
+ * @copyright   Copyright (c) 2014 Mageplace. (http://www.mageplace.com)
+ * @license     http://www.mageplace.com/disclaimer.html
+ */
+
+/**
+ * @see  Mageplace_Freshdesk_Block_Field_Row
+ *
+ * @var Mageplace_Freshdesk_Block_Field_Row $this
+ */
+
+?>
+<li class="wide">
+    <div class="field">
+        <label for="<?php echo $this->getFieldId(); ?>"
+               class="<?php if ($this->isRequired()): ?>required<?php endif; ?>">
+            <?php if ($this->isRequired()): ?> <em class="required">*</em><?php endif; ?>
+            <?php echo $this->getFieldLabel(); ?>
+        </label>
+
+        <div class="input-box">
+            <?php echo $this->getInputFieldHtml(); ?>
+        </div>
+    </div>
+</li>

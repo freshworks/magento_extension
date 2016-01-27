@@ -1,0 +1,63 @@
+<?php
+/**
+ * Mageplace Freshdesk extension
+ *
+ * @category    Mageplace_Freshdesk
+ * @package     Mageplace_Freshdesk
+ * @copyright   Copyright (c) 2014 Mageplace. (http://www.mageplace.com)
+ * @license     http://www.mageplace.com/disclaimer.html
+ */
+
+/**
+ * @see Mageplace_Freshdesk_Block_Field_Nested_Field
+ *
+ * @var Mageplace_Freshdesk_Block_Field_Nested_Field $this
+ */
+
+?>
+<select id="<?php echo $this->getFieldId(); ?>" name="<?php echo $this->getFieldName(); ?>"
+        class="<?php echo $this->getFieldClass(); ?>"
+        onchange="fdNestedOptions['<?php echo $this->getFieldId(); ?>'].optionChanged(this)">
+    <?php foreach ($this->getNestedOptions() as $option) : ?>
+        <option value="<?php echo $option['value']; ?>"><?php echo $option['label']; ?></option>
+    <?php endforeach; ?>
+</select>
+
+<div id="<?php echo $this->getFieldId(); ?>_level1_block" style="display: none;">
+    <label for="<?php echo $this->getFirstLevelNestedFieldId(); ?>">
+        <?php echo $this->getFirstLevelNestedFieldLabel(); ?>
+        <?php if ($this->isRequired()): ?> <span class="required">*</span><?php endif; ?>
+    </label>
+
+    <div class="input-box">
+        <select id="<?php echo $this->getFirstLevelNestedFieldId(); ?>"
+                name="<?php echo $this->getFirstLevelNestedFieldName(); ?>"
+                class=""
+                onchange="fdNestedOptions['<?php echo $this->getFieldId(); ?>'].optionChanged(this)">
+        </select>
+    </div>
+</div>
+
+<?php if ($this->hasSecondLevel()) : ?>
+    <div id="<?php echo $this->getFieldId(); ?>_level2_block" style="display: none;">
+        <label for="<?php echo $this->getSecondLevelNestedFieldId(); ?>">
+            <?php echo $this->getSecondLevelNestedFieldLabel(); ?>
+            <?php if ($this->isRequired()): ?> <span class="required">*</span><?php endif; ?>
+        </label>
+
+        <div class="input-box">
+            <select id="<?php echo $this->getSecondLevelNestedFieldId(); ?>"
+                    name="<?php echo $this->getSecondLevelNestedFieldName(); ?>"
+                    class=""
+                    onchange="fdNestedOptions['<?php echo $this->getFieldId(); ?>'].optionChanged(this)">
+            </select>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script>
+    if (Object.isUndefined(fdNestedOptions)) {
+        var fdNestedOptions = [];
+    }
+    fdNestedOptions["<?php echo $this->getFieldId(); ?>"] = new Freshdesk.Fields.Nested('<?php echo $this->getFieldId(); ?>', <?php echo Zend_Json::encode($this->getNestedOptions()); ?>);
+</script>

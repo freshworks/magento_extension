@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplace Freshdesk extension
+ *
+ * @category    Mageplace_Freshdesk
+ * @package     Mageplace_Freshdesk
+ * @copyright   Copyright (c) 2014 Mageplace. (http://www.mageplace.com)
+ * @license     http://www.mageplace.com/disclaimer.html
+ */
+-->
+<config>
+	<modules>
+		<Mageplace_Freshdesk>
+			<version>1.0.0</version>
+		</Mageplace_Freshdesk>
+	</modules>
+
+	<global>
+		<resources>
+			<freshdesk_setup>
+				<setup>
+					<module>Mageplace_Freshdesk</module>
+				</setup>
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</freshdesk_setup>
+			<freshdesk_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</freshdesk_write>
+			<freshdesk_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</freshdesk_read>
+		</resources>
+
+		<cache>
+			<types>
+				<freshdesk>
+					<label>Freshdesk</label>
+					<description>Freshdesk tickets, ticket fields, user tickets and etc</description>
+					<tags>FRESHDESK</tags>
+				</freshdesk>
+			</types>
+		</cache>
+
+		<blocks>
+			<freshdesk>
+				<class>Mageplace_Freshdesk_Block</class>
+			</freshdesk>
+		</blocks>
+
+		<helpers>
+			<freshdesk>
+				<class>Mageplace_Freshdesk_Helper</class>
+			</freshdesk>
+		</helpers>
+
+		<models>
+			<freshdesk>
+				<class>Mageplace_Freshdesk_Model</class>
+				<resourceModel>freshdesk_resource</resourceModel>
+			</freshdesk>
+			<freshdesk_resource>
+				<class>Mageplace_Freshdesk_Model_Resource</class>
+				<entities>
+					<ticket />
+					<field />
+				</entities>
+			</freshdesk_resource>
+		</models>
+
+		<events>
+			<customer_save_after>
+				<observers>
+					<freshdesk>
+						<class>freshdesk/observer</class>
+						<method>processSaveCustomer</method>
+					</freshdesk>
+				</observers>
+			</customer_save_after>
+		</events>
+	</global>
+
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+						<Mageplace_Freshdesk before="Mage_Adminhtml">Mageplace_Freshdesk_Adminhtml</Mageplace_Freshdesk>
+					</modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+
+	<adminhtml>
+		<translate>
+			<modules>
+				<Mageplace_Freshdesk>
+					<files>
+						<default>Mageplace_Freshdesk.csv</default>
+					</files>
+				</Mageplace_Freshdesk>
+			</modules>
+		</translate>
+
+		<layout>
+			<updates>
+				<freshdesk>
+					<file>freshdesk.xml</file>
+				</freshdesk>
+			</updates>
+		</layout>
+
+		<menu>
+			<freshdesk translate="title" module="freshdesk">
+				<title>Freshdesk</title>
+				<sort_order>71</sort_order>
+				<children>
+					<ticket translate="title" module="freshdesk">
+						<title>Tickets</title>
+						<action>adminhtml/freshdesk/ticket</action>
+						<sort_order>10</sort_order>
+					</ticket>
+					<portal translate="title" module="freshdesk">
+						<title>Go to Freshdesk</title>
+						<action>adminhtml/freshdesk/portal</action>
+						<sort_order>20</sort_order>
+					</portal>
+					<config translate="title" module="freshdesk">
+						<title>Settings</title>
+						<action>adminhtml/system_config/edit/section/freshdesk</action>
+						<sort_order>1000</sort_order>
+					</config>
+				</children>
+			</freshdesk>
+		</menu>
+
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<freshdesk>
+							<title>Freshdesk</title>
+							<sort_order>10</sort_order>
+							<children>
+								<tickets translate="title" module="freshdesk">
+									<title>Tickets</title>
+									<sort_order>10</sort_order>
+									<!--children>
+										<actions translate="title">
+											<title>Actions</title>
+											<children>
+												<create translate="title">
+													<title>Create ticket</title>
+												</create>
+												<close translate="title">
+													<title>Close ticket</title>
+												</close>
+											</children>
+										</actions>
+									</children-->
+								</tickets>
+								<portal translate="title" module="freshdesk">
+									<title>Go to Freshdesk</title>
+									<sort_order>20</sort_order>
+								</portal>
+							</children>
+						</freshdesk>
+
+						<system>
+							<children>
+								<config>
+									<children>
+										<freshdesk translate="title" module="freshdesk">
+											<title>Freshdesk</title>
+											<sort_order>100</sort_order>
+										</freshdesk>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+	</adminhtml>
+
+	<frontend>
+		<routers>
+			<freshdesk>
+				<use>standard</use>
+				<args>
+					<module>Mageplace_Freshdesk</module>
+					<frontName>freshdesk</frontName>
+				</args>
+			</freshdesk>
+		</routers>
+
+		<translate>
+			<modules>
+				<Mageplace_Freshdesk>
+					<files>
+						<default>Mageplace_Freshdesk.csv</default>
+					</files>
+				</Mageplace_Freshdesk>
+			</modules>
+		</translate>
+
+		<layout>
+			<updates>
+				<freshdesk>
+					<file>freshdesk.xml</file>
+				</freshdesk>
+			</updates>
+		</layout>
+
+		<events>
+			<controller_action_postdispatch_contacts>
+				<observers>
+					<freshdesk>
+						<class>freshdesk/observer</class>
+						<method>processControllerActionPostdispatchContacts</method>
+					</freshdesk>
+				</observers>
+			</controller_action_postdispatch_contacts>
+
+			<!--core_block_abstract_to_html_before>
+				<observers>
+					<freshdesk>
+						<class>freshdesk/observer</class>
+						<method>processCoreBlockAbstractToHtmlBefore</method>
+					</freshdesk>
+				</observers>
+			</core_block_abstract_to_html_before-->
+		</events>
+	</frontend>
+
+	<default>
+		<freshdesk>
+			<tickets>
+				<priority>1</priority>
+				<status>2</status>
+				<status_close>5</status_close>
+			</tickets>
+			<!--channels>
+				<feedback_widget_label>Support</feedback_widget_label>
+				<feedback_widget_bgcolor>#006063</feedback_widget_bgcolor>
+				<feedback_widget_position>4</feedback_widget_position>
+				<feedback_widget><![CDATA[
+<script type="text/javascript" src="http://assets.freshdesk.com/widget/freshwidget.js"></script>
+<script type="text/javascript">
+	FreshWidget.init("", {"queryString": "&widgetType=popup", "widgetType": "popup", "buttonType": "text", "buttonText": "{{buttonText}}", "buttonColor": "white", "buttonBg": "{{buttonBg}}", "alignment": "{{alignment}}", "offset": "235px", "formHeight": "500px", "url": "{{URL}}"} );
+</script>]]></feedback_widget>
+			</channels-->
+		</freshdesk>
+	</default>
+
+</config>

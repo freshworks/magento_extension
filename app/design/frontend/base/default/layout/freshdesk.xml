@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplace Freshdesk extension
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Mageplace. (http://www.mageplace.com)
+ * @license     http://www.mageplace.com/disclaimer.html
+ */
+-->
+<layout version="1.0.0">
+	<default>
+		<reference name="head">
+			<block type="freshdesk/page_html_head_widget" name="freshdesk_widget"
+				   template="freshdesk/page/html/head/widget.phtml" />
+		</reference>
+
+		<reference name="footer_links">
+			<action method="addLink" translate="label title" module="catalog"
+					ifconfig="freshdesk/channels/enable_support_link">
+				<label>Support</label>
+				<url helper="freshdesk/getSupportLink" />
+				<title>Support</title>
+				<prepare>0</prepare>
+				<url_params></url_params>
+				<position></position>
+				<li_params></li_params>
+				<a_params>target="_blank"</a_params>
+			</action>
+		</reference>
+	</default>
+
+	<customer_account>
+		<reference name="head">
+			<action method="addCss">
+				<stylesheet>freshdesk/css/freshdesk.css</stylesheet>
+			</action>
+
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>freshdesk/js/freshdesk.js</name>
+			</action>
+		</reference>
+
+		<reference name="customer_account_navigation">
+			<action method="addLink" translate="label" module="freshdesk"
+					ifconfig="freshdesk/customer_view/enable_customer_view">
+				<name>freshdesk_tickets</name>
+				<path>freshdesk/ticket/list</path>
+				<label>My Tickets</label>
+			</action>
+		</reference>
+
+		<reference name="left">
+			<block type="core/template" name="js.move.navigation.link"
+				   template="freshdesk/customer/account/navigation/js.phtml" after="customer_account_navigation">
+				<action method="setLabel" translate="label" module="freshdesk">
+					<label>My Tickets</label>
+				</action>
+				<action method="setPath">
+					<path>freshdesk/ticket/list</path>
+				</action>
+				<action method="setPosition">
+					<position>4</position>
+				</action>
+			</block>
+		</reference>
+	</customer_account>
+
+	<customer_account_index>
+		<reference name="my.account.wrapper">
+			<block type="freshdesk/customer_ticket_recent" name="customer_account_dashboard_freshdesk_tickets_recent"
+				   as="freshdesk_tickets_recent" template="freshdesk/tickets/recent.phtml" after="-" />
+		</reference>
+	</customer_account_index>
+
+	<sales_order_view>
+		<reference name="sales.order.info.buttons">
+			<block type="freshdesk/order_info_buttons" name="order_info_create_ticket_button"
+				   template="freshdesk/sales/order/info/create_ticket_button.phtml" />
+		</reference>
+	</sales_order_view>
+
+	<freshdesk_ticket_list>
+		<update handle="customer_account" />
+
+		<reference name="my.account.wrapper">
+			<block type="freshdesk/customer_ticket_list" name="freshdesk_customer_tickets"
+				   template="freshdesk/tickets/list.phtml">
+				<block type="core/text_list" name="customer_freshdesk_tickets_info" as="freshdesk_tickets_info"
+					   translate="label">
+					<label>My Tickets Info</label>
+				</block>
+			</block>
+			<block type="customer/account_dashboard" name="customer.account.link.back"
+				   template="customer/account/link/back.phtml" />
+		</reference>
+	</freshdesk_ticket_list>
+
+	<freshdesk_ticket_create>
+		<update handle="customer_account" />
+
+		<reference name="my.account.wrapper">
+			<block type="freshdesk/customer_ticket_create" name="freshdesk_customer_ticket_create"
+				   template="freshdesk/tickets/create.phtml">
+			</block>
+			<!--block type="customer/account_dashboard" name="customer.account.link.back"
+				   template="customer/account/link/back.phtml"/-->
+		</reference>
+	</freshdesk_ticket_create>
+
+	<freshdesk_ticket_view>
+		<update handle="customer_account" />
+
+		<reference name="my.account.wrapper">
+			<block type="freshdesk/customer_ticket_view" name="freshdesk_customer_ticket_view"
+				   template="freshdesk/tickets/view.phtml">
+			</block>
+		</reference>
+	</freshdesk_ticket_view>
+</layout>

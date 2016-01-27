@@ -1,0 +1,77 @@
+<?php
+/**
+ * Mageplace Freshdesk extension
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Mageplace. (http://www.mageplace.com)
+ * @license     http://www.mageplace.com/disclaimer.html
+ */
+
+/**
+ * @see Mageplace_Freshdesk_Block_Customer_Ticket_Create
+ * @var Mageplace_Freshdesk_Block_Customer_Ticket_Create $this
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="freshdesk-ticket-create">
+    <div class="page-title">
+        <h1><?php echo $this->getTitle(); ?></h1>
+    </div>
+
+    <!--dl class="ticket-info">
+        <dt><?php echo $this->__('Submit Ticket'); ?></dt>
+    </dl-->
+
+    <form action="<?php echo $this->getSaveUrl(); ?>" method="post" id="createTicketForm">
+        <div class="col2-set ticket-create-box">
+            <ul class="form-list">
+                <?php foreach ($this->getFields() as $field) : ?>
+                    <?php if ($this->isFieldVisible($field)) : ?>
+                        <?php echo $this->getFieldHtml($field); ?>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+
+        <div class="actions">
+            <button type="submit" title="<?php echo $this->__('Save') ?>"
+                    class="button btn-save-ticket">
+                <span><span><?php echo $this->__('Save') ?></span></span>
+            </button>
+            <!--button type="button" title="<?php echo $this->__('Save and New') ?>"
+                    class="button btn-save-new-ticket"
+                    onclick="ticketForm.submit('<?php echo $this->getSaveNewUrl(); ?>')">
+                <span><span><?php echo $this->__('Save and New') ?></span></span>
+            </button>
+            <button type="button" title="<?php echo $this->__('Save and Close') ?>"
+                    class="button btn-save-close-ticket"
+                    onclick="ticketForm.submit('<?php echo $this->getSaveCloseUrl(); ?>')">
+                <span><span><?php echo $this->__('Save and Close') ?></span></span>
+            </button-->
+            <button type="button" title="<?php echo $this->__('Cancel') ?>"
+                    class="button btn-close-ticket"
+                    onclick="location.href='<?php echo $this->getCancelUrl(); ?>'">
+                <span><span><?php echo $this->__('Cancel') ?></span></span>
+            </button>
+        </div>
+    </form>
+    <script>
+        //<![CDATA[
+        VarienForm.addMethods({
+            submit: function (url) {
+                if (this.validator && this.validator.validate()) {
+                    if (url) {
+                        this.form.action = url;
+                    }
+
+                    this.form.submit();
+                }
+                return false;
+            }
+        });
+        var ticketForm = new VarienForm('createTicketForm', true);
+        //]]>
+    </script>
+</div>

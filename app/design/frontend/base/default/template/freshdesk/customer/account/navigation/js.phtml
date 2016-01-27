@@ -1,0 +1,18 @@
+<?php
+/**
+ * Mageplace Freshdesk extension
+ *
+ * @category    Mageplace_Freshdesk
+ * @package     Mageplace_Freshdesk
+ * @copyright   Copyright (c) 2014 Mageplace. (http://www.mageplace.com)
+ * @license     http://www.mageplace.com/disclaimer.html
+ */
+?>
+<script type="text/javascript">
+    //<![CDATA[
+    var label = "<?php echo $this->getLabel(); ?>";
+    var path = "<?php echo $this->getPath(); ?>";
+    var position = <?php echo intval($this->getPosition()); ?>;
+    new Freshdesk.Account(label, path, position).process();
+    //]]>
+</script>

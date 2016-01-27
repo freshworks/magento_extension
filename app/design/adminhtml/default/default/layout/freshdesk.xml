@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplace Freshdesk extension
+ *
+ * @category    Mageplace_Freshdesk
+ * @package     Mageplace_Freshdesk
+ * @copyright   Copyright (c) 2014 Mageplace. (http://www.mageplace.com)
+ * @license     http://www.mageplace.com/disclaimer.html
+ */
+ -->
+<layout>
+	<default>
+		<reference name="head">
+			<action method="addItem">
+				<type>skin_js</type>
+				<name>freshdesk/js/freshdesk.js</name>
+			</action>
+		</reference>
+	</default>
+
+	<adminhtml_freshdesk_ticket>
+		<reference name="head">
+			<action method="addCss">
+				<stylesheet>freshdesk/css/freshdesk.css</stylesheet>
+			</action>
+		</reference>
+	</adminhtml_freshdesk_ticket>
+
+	<adminhtml_freshdesk_ticket_create>
+		<update handle="editor" />
+		<update handle="adminhtml_freshdesk_ticket" />
+	</adminhtml_freshdesk_ticket_create>
+
+	<adminhtml_customer_edit>
+		<update handle="adminhtml_freshdesk_ticket_create" />
+		<reference name="accordion">
+			<block type="freshdesk/adminhtml_customer_edit_tab_view_tickets" name="freshdesk_customer_tickets" />
+		</reference>
+	</adminhtml_customer_edit>
+
+	<adminhtml_system_config_edit>
+		<update handle="adminhtml_freshdesk_ticket_create" />
+	</adminhtml_system_config_edit>
+</layout>

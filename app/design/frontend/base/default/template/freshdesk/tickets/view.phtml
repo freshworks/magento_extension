@@ -1,0 +1,153 @@
+<?php
+/**
+ * Mageplace Freshdesk extension
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Mageplace. (http://www.mageplace.com)
+ * @license     http://www.mageplace.com/disclaimer.html
+ */
+
+/**
+ * @see Mageplace_Freshdesk_Block_Customer_Ticket_View
+ * @var Mageplace_Freshdesk_Block_Customer_Ticket_View $this
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<div class="freshdesk-ticket">
+    <div class="page-title title-buttons">
+        <h1><?php echo $this->getTitle(); ?></h1>
+
+        <div class="actions">
+            <?php if ($this->isRefreshButtonVisible()): ?>
+                <button type="button" title="<?php echo $this->__('Refresh') ?>" class="button btn-refresh-ticket"
+                        onclick="location.href='<?php echo $this->getRefreshUrl(); ?>'">
+                    <span><span><?php echo $this->__('Refresh') ?></span></span>
+                </button>
+            <?php endif; ?>
+            <button type="button" title="<?php echo $this->__('Create a New Ticket') ?>"
+                    class="button btn-create-ticket"
+                    onclick="location.href='<?php echo $this->getCreateUrl(); ?>'">
+                <span><span><?php echo $this->__('Create a New Ticket') ?></span></span>
+            </button>
+        </div>
+    </div>
+
+    <dl class="ticket-info">
+        <dt><?php echo $this->__('About This Ticket:'); ?></dt>
+        <dd>
+            <ul id="ticket-info-tabs">
+                <li class="current"><?php echo $this->__('Ticket Information'); ?></li>
+            </ul>
+            <script
+                type="text/javascript">decorateGeneric($('ticket-info-tabs').select('LI'), ['first', 'last']);</script>
+        </dd>
+    </dl>
+
+    <?php $_ticket = $this->getTicket(); ?>
+
+    <p class="order-date"><?php echo $this->__('Date Created: %s', $this->formatDate($_ticket->getCreatedAt(), 'long')) ?></p>
+
+    <div class="col2-set ticket-info-box">
+        <div class="page-title title-buttons notes-box">
+            <h1><?php echo $this->getSubject(); ?></h1>
+
+            <div class="actions">
+                <button type="button" title="<?php echo $this->__('Reply') ?>"
+                        id="ticket_reply_button" class="button btn-close-ticket">
+                    <span><span><?php echo $this->__('Reply') ?></span></span>
+                </button>
+                <?php if ($this->canClose($_ticket)): ?>
+                    <button type="button" title="<?php echo $this->__('Close Ticket') ?>"
+                            id="ticket_reply_button" class="button btn-close-ticket"
+                            onclick="if(confirm('<?php echo $this->__('Are you sure you want to close ticket?'); ?>')) location.href='<?php echo $this->getCloseUrl(); ?>'">
+                        <span><span><?php echo $this->__('Close Ticket') ?></span></span>
+                    </button>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <div class="note-row">
+            <div class="col-1">
+                <div class="box">
+                    <div class="box-title">
+                        <strong><?php echo $this->getUser()->getName(); ?></strong>
+                    </div>
+                    <div class="box-date">
+                        <?php echo $this->getDateDiff($_ticket->getCreatedAt(), $this->__('reported')); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="box-note">
+                    <?php echo $_ticket->getDescriptionHtml(); ?>
+                </div>
+            </div>
+        </div>
+
+        <?php foreach ($this->getNotes() as $note) : ?>
+            <?php if($note["private"] != 1) :?>
+                <div class="note-row">
+                    <div class="col-1">
+                        <div class="box">
+                            <div class="box-title">
+                                <strong><?php echo $note->getUserName(); ?></strong>
+                            </div>
+                            <div class="box-date">
+                                <?php echo $this->getDateDiff($note->getCreatedAt(), $this->__('said')); ?>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="box-note">
+                            <?php echo $note->getBodyHtml(); ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+
+        <div class="note-row">
+            <div class="col-1 last">
+                <div class="box">
+                    <div class="box-title">
+                        <strong><?php echo $this->getUser()->getName(); ?></strong>
+                    </div>
+                    <div class="box-date">
+                        <?php /*echo $this->getDateDiff($_ticket->getCreatedAt(), $this->__('reported'));*/ ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2 last">
+                <div class="box-note">
+                    <input type="text" id="ticket_reply_message" class="reply not-active" name="reply"
+                           value="<?php echo $this->__('Click here to reply to this ticket'); ?>"/>
+                    <button type="button" title="<?php echo $this->__('Send') ?>"
+                            id="ticket_send_button" class="button btn-send-ticket">
+                        <span><span><?php echo $this->__('Send') ?></span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="buttons-set">
+        <p class="back-link">
+            <a href="<?php echo $this->escapeUrl($this->getBackUrl()); ?>">
+                <small>&laquo; </small><?php echo $this->getBackTitle(); ?>
+            </a>
+        </p>
+    </div>
+</div>
+<script type="text/javascript">
+    new Freshdesk.Account.Ticket.View.Reply(
+        'ticket_reply_message',
+        'ticket_reply_button',
+        'ticket_send_button',
+        '<?php echo $this->__('Click here to reply to this ticket'); ?>',
+        'not-active',
+        '<?php echo $this->getSendReplyUrl(); ?>',
+        '<?php echo $this->getMessageTag(); ?>'
+
+    );
+</script>

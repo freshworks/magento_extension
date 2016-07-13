@@ -1,0 +1,9 @@
+app/code/local/Mageplace/Freshdesk            app/code/local/Mageplace/Freshdesk
+app/etc/modules/Mageplace_Freshdesk.xml            app/etc/modules/Mageplace_Freshdesk.xml
+app/locale/en_US/Mageplace_Freshdesk.csv            app/locale/en_US/Mageplace_Freshdesk.csv
+app/design/frontend/base/default/layout/freshdesk.xml            app/design/frontend/base/default/layout/freshdesk.xml
+app/design/frontend/base/default/template/freshdesk/            app/design/frontend/base/default/template/freshdesk/
+app/design/adminhtml/default/default/layout/freshdesk.xml            app/design/adminhtml/default/default/layout/freshdesk.xml
+app/design/adminhtml/default/default/template/freshdesk/            app/design/adminhtml/default/default/template/freshdesk/
+skin/frontend/base/default/freshdesk/            skin/frontend/base/default/freshdesk/
+skin/adminhtml/default/default/freshdesk/css/            skin/adminhtml/default/default/freshdesk/

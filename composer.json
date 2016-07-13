@@ -1,0 +1,13 @@
+{
+    "name": "freshdesk/magento1",
+    "description": "Freshdesk integration",
+    "type": "magento-module",
+    "homepage": "https://github.com/freshdesk/magento_extension",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Freshdesk",
+            "email": "support@freshdesk.com"
+        }
+    ]
+}
